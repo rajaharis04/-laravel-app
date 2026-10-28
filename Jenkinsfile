@@ -62,7 +62,7 @@ pipeline {
 
                     echo "Preparing deployment directory..."
 
-                    sudo mkdir -p "$DEPLOY_DIR"
+                    mkdir -p "$DEPLOY_DIR"
 
                     if [ ! -f "$DEPLOY_DIR/.env" ]; then
                         sudo cp "$WORKSPACE/.env.example" "$DEPLOY_DIR/.env"
