@@ -32,12 +32,16 @@ pipeline {
                 '''
             }
         }
-
-        stage('Run Laravel Tests') {
-            steps {
-                sh 'php artisan test'
-            }
-        }
+	stage('Run Laravel Tests') {
+    steps {
+        sh '''
+            export APP_ENV=testing
+            export APP_KEY="base64:$(php -r 'echo base64_encode(random_bytes(32));')"
+            php artisan config:clear
+            php artisan test
+        '''
+    }
+	}
     }
 
     post {
